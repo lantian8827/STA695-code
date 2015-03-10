@@ -3,7 +3,6 @@ BinRatio <- function(n1, x1, n2, x2, step=0.1, initStep=0.1, level=3.84){
 if(x1 >= n1) stop("all success?")
 
 
-
 MLE <- (x2*n1)/(x1*n2)   #### recall we are to find CI for p2/p1, not p1/p2.
 EPS <- .Machine$double.eps
 
