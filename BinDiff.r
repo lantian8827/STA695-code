@@ -58,4 +58,4 @@ BinDiff <- function(n1, x1, n2, x2, step=0.01, initStep=0.01, level=3.84){
 }
 
 
-BinRatio(10,9,10,1)
+BinDiff(10,1,10,9)
