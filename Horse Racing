@@ -1,0 +1,37 @@
+install.packages("MASS")
+install.packages("survival")
+library(survival)
+library(MASS)
+data=read.csv("C:/Users/blue-TL/Documents/ZhouM2 (2).csv",sep=",",header=TRUE)
+w = table(data$Course)
+
+
+m2 <- coxph(Surv(Rank)~factor(Course) + Raceno+ FinalOdds+WtCarried+JWinPer+JPlacePer+
+              TWinPer+TPlacePer+Drawing+HWinPer+HPlacePer+Month, data=data)
+
+
+m3 <-coxph(Surv(Rank)~factor(Course) + DateValue + Raceno+ HorseNo +  FinalOdds + WtCarried + JWinPer+ JPlacePer+ TWinPer+TPlacePer+Drawing+HWinPer+HPlacePer+Month, data=data)
+
+m4 <-coxph(Surv(Rank)~factor(Course):DateValue:Raceno:HorseNo:FinalOdds:WtCarried:JWinPer:JPlacePer:TWinPer:TPlacePer:Drawing:HWinPer:HPlacePer:Month, data=data)
+
+summary(m1)$coef
+
+anova(m1,m2)
+
+
+a=stepAIC(m1,trace = FALSE) 
+b=stepAIC(m2,trace = FALSE) 
+c=stepAIC(m3,trace = FALSE)
+d=stepAIC(m4,trace = FALSE)
+a$anova
+b$anova
+c$anova
+d$anova
+c$anova
+
+####the last choice
+
+m5 <-coxph(Surv(Rank) ~ factor(Course) + DateValue + HorseNo + FinalOdds + 
+  WtCarried + JPlacePer + TPlacePer + Drawing + HPlacePer,data=data)
+
+summary(m5)$coef
